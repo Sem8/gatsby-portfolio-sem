@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Image, Text, Flex, Box } from 'rebass';
+import { Image, Text, Flex, Box, Link } from 'rebass';
 import { StaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 import Fade from 'react-reveal/Fade';
@@ -210,6 +210,20 @@ const Projects = () => (
         </CardContainer>
       )}
     />
+    <Link
+      p={3}
+      mx={2}
+      my={4}
+      color="background"
+      bg="primary"
+      fontSize={[4, 4]}
+      fontWeight="bold"
+      textAlign="center"
+      href="#"
+      mr={2}
+    >
+      Back to Top
+    </Link>
   </Section.Container>
 );
 
