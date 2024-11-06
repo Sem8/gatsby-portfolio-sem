@@ -22,8 +22,8 @@ const plugins = [
     },
   },
   {
-    resolve: 'gatsby-plugin-manifest',
-    options: manifestConfig,
+    // resolve: 'gatsby-plugin-manifest',
+    // options: manifestConfig,
   },
   'gatsby-plugin-styled-components',
   {
