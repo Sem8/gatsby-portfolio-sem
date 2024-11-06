@@ -22,7 +22,7 @@ const plugins = [
     },
   },
   {
-    // resolve: 'gatsby-plugin-manifest',
+    resolve: 'gatsby-plugin-manifest',
     // options: manifestConfig,
   },
   'gatsby-plugin-styled-components',
