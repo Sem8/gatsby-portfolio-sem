@@ -1,4 +1,4 @@
-const gatsbySourceMedium = require('gatsby-source-medium/gatsby-node');
+// const gatsbySourceMedium = require('gatsby-source-medium/gatsby-node');
 const { createClient } = require('contentful');
 
 const getAbout = (entry) => entry.sys.contentType.sys.id === 'about';
@@ -11,7 +11,7 @@ exports.sourceNodes = async (gatsbyConfig, themeOptions) => {
 
   const { items } = await client.getEntries();
   const about = items.find(getAbout);
-  const { mediumUser = '@medium' } = about.fields;
+  // const { mediumUser = '@medium' } = about.fields;
 
-  await gatsbySourceMedium.sourceNodes(gatsbyConfig, { username: mediumUser });
+  // await gatsbySourceMedium.sourceNodes(gatsbyConfig, { username: mediumUser });
 };

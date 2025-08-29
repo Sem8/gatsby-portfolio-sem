@@ -87,6 +87,7 @@ export const useMediumQuery = (): Response => {
 `);
 
 const { posts: rawPosts, ...author } = allFeedMediumFeed;
+if (author.username === '@medium') return EMPTY_RESPONSE;
 
 
 const posts = allFeedMediumFeed.nodes.map((p: { title: any; contentSnippet: any; link: any; pubDate: any; }) => ({
