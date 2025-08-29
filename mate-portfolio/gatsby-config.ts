@@ -1,6 +1,10 @@
 import type { GatsbyConfig } from 'gatsby';
 import colors from './src/colors.json';
 
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+});
+
 const plugins: GatsbyConfig['plugins'] = [
   'gatsby-plugin-fontawesome-css',
   'gatsby-plugin-react-helmet',
@@ -40,13 +44,13 @@ const plugins: GatsbyConfig['plugins'] = [
       ],
     },
   },
-  {
-  resolve: `gatsby-source-rss-feed`,
-  options: {
-    url: `https://medium.com/feed/@mssemmi8`,
-    name: `MediumFeed`,
-  },
-}
+//   {
+//   resolve: `gatsby-source-rss-feed`,
+//   options: {
+//     url: `https://medium.com/feed/@mssemmi8`,
+//     name: `MediumFeed`,
+//   },
+// },
 ];
 
 if (process.env.ANALYTICS_ID) {

@@ -34,13 +34,20 @@ export type SocialLink = {
   icon: IconName;
 };
 
+// export type MediumPost = {
+//   title: string;
+//   text: string;
+//   cover: string;
+//   url: string;
+//   date: string;
+//   time: number;
+// };
+
 export type MediumPost = {
   title: string;
   text: string;
-  cover: string;
   url: string;
   date: string;
-  time: number;
 };
 
 export type MediumAuthor = {
