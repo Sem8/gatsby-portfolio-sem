@@ -40,6 +40,13 @@ const plugins: GatsbyConfig['plugins'] = [
       ],
     },
   },
+  {
+  resolve: `gatsby-source-rss-feed`,
+  options: {
+    url: `https://medium.com/feed/@mssemmi8`,
+    name: `MediumFeed`,
+  },
+}
 ];
 
 if (process.env.ANALYTICS_ID) {
