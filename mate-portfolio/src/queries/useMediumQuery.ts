@@ -36,42 +36,65 @@ type Response = {
 const EMPTY_RESPONSE = { author: null, posts: [] };
 
 export const useMediumQuery = (): Response => {
-  const { mediumUser } = useStaticQuery<QueryResponse>(graphql`
-    query MediumPostQuery {
-      mediumUser {
-        id
-        name
-        username
-        posts {
-          id
-          uniqueSlug
-          title
-          createdAt(formatString: "MMM YYYY")
-          virtuals {
-            subtitle
-            readingTime
-            previewImage {
-              imageId
-            }
-          }
-        }
+  // const { mediumUser } = useStaticQuery<QueryResponse>(graphql`
+  //   query MediumPostQuery {
+  //     mediumUser {
+  //       id
+  //       name
+  //       username
+  //       posts {
+  //         id
+  //         uniqueSlug
+  //         title
+  //         createdAt(formatString: "MMM YYYY")
+  //         virtuals {
+  //           subtitle
+  //           readingTime
+  //           previewImage {
+  //             imageId
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // `);
+
+  // const { posts: rawPosts, ...author } = mediumUser;
+
+  // if (author.username === '@medium') return EMPTY_RESPONSE;
+
+  // const posts = rawPosts.map((p) => ({
+  //   title: p.title,
+  //   text: p.virtuals.subtitle,
+  //   cover: `${MEDIUM_CDN}/${p.virtuals.previewImage.imageId}`,
+  //   // url: `${MEDIUM_URL}/@${mediumUser.username}/${p.uniqueSlug}`,
+  //   url: `${MEDIUM_URL}/@${mediumUser.username}`,
+  //   date: p.createdAt,
+  //   time: p.virtuals.readingTime,
+  // }));
+
+  const { allFeedMediumFeed } = useStaticQuery(graphql`
+  query MediumPostQuery {
+    allFeedMediumFeed(limit: 5) {
+      nodes {
+        title
+        link
+        pubDate(formatString: "MMM YYYY")
+        contentSnippet
       }
     }
-  `);
+  }
+`);
 
-  const { posts: rawPosts, ...author } = mediumUser;
+const { posts: rawPosts, ...author } = allFeedMediumFeed;
 
-  if (author.username === '@medium') return EMPTY_RESPONSE;
 
-  const posts = rawPosts.map((p) => ({
-    title: p.title,
-    text: p.virtuals.subtitle,
-    cover: `${MEDIUM_CDN}/${p.virtuals.previewImage.imageId}`,
-    // url: `${MEDIUM_URL}/@${mediumUser.username}/${p.uniqueSlug}`,
-    url: `${MEDIUM_URL}/@${mediumUser.username}`,
-    date: p.createdAt,
-    time: p.virtuals.readingTime,
-  }));
+const posts = allFeedMediumFeed.nodes.map((p: { title: any; contentSnippet: any; link: any; pubDate: any; }) => ({
+  title: p.title,
+  text: p.contentSnippet,
+  url: p.link,
+  date: p.pubDate,
+}));
 
   return {
     posts,
