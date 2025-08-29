@@ -67,7 +67,8 @@ export const useMediumQuery = (): Response => {
     title: p.title,
     text: p.virtuals.subtitle,
     cover: `${MEDIUM_CDN}/${p.virtuals.previewImage.imageId}`,
-    url: `${MEDIUM_URL}/@${mediumUser.username}/${p.uniqueSlug}`,
+    // url: `${MEDIUM_URL}/@${mediumUser.username}/${p.uniqueSlug}`,
+    url: `${MEDIUM_URL}/@${mediumUser.username}`,
     date: p.createdAt,
     time: p.virtuals.readingTime,
   }));
